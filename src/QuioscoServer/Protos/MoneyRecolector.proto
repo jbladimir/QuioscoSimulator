@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "QuioscoServer";
+
+package quiosco;
+
+// Quisco service definition.
+service QuiscoService {
+
+  rpc ReceiveMoney (google.protobuf.Empty) returns (stream ClientCount);
+  
+  
+  // Sends a greeting
+  rpc InformStatus (StatusRequest) returns (StatusResponse);
+
+  rpc SetUserAmount (MoneyReceive) returns (google.protobuf.Empty);
+}
+
+
+
+// The request message containing the user's name.
+message StatusRequest {
+  enum Status {
+    WAKINGUP = 0;
+    READY = 1;
+    ERROR = 2;
+  }
+  Status status =1;
+}
+
+// The request message containing the user's name.
+message StatusResponse {
+  bool recived = 1;
+  int32 count = 2;
+}
+
+
+message ClientCount {
+  int32 count = 1;
+}
+
+// The request message containing the user's name.
+message MoneyReceive {
+  string deviceId = 1;
+  double count = 2;
+  string type = 3;
+  double total = 4;
+
+}
