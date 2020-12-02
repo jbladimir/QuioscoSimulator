@@ -16,7 +16,9 @@ namespace MoneyRecolectorControl
         {
             MoneyRecolectorController recolectorController = MoneyRecolectorController.Instance;
 
-            MoneyRecolectorSimulator simulator = new MoneyRecolectorSimulator();
+            //MoneyRecolectorSimulator simulator = new MoneyRecolectorSimulator();
+
+            IVDC_Recolector simulator = new IVDC_Recolector();
 
             recolectorController.RegisterDevice(simulator);
 
